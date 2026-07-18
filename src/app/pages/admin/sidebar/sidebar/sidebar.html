@@ -1,0 +1,25 @@
+<aside class="w-64 bg-gradient-to-b from-blue-900 to-blue-950 min-h-screen flex-shrink-0">
+  <div class="p-6 border-b border-yellow-400/20">
+    <div class="flex items-center space-x-3">
+      <div class="w-10 h-10 bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg flex items-center justify-center">
+        <span class="text-blue-900 font-bold text-xl">A</span>
+      </div>
+      <div>
+        <h2 class="text-white font-bold">Admin Panel</h2>
+        <p class="text-yellow-400/70 text-xs">Re7laTours Management</p>
+      </div>
+    </div>
+  </div>
+
+  <nav class="p-4 space-y-1">
+    @for (item of menuItems; track item.path) {
+      <a [routerLink]="item.path"
+         routerLinkActive="active"
+         class="flex items-center space-x-3 px-4 py-3 rounded-lg text-blue-100 hover:text-white hover:bg-blue-800/50 transition-all duration-300 group">
+        <span class="text-xl">{{ item.icon }}</span>
+        <span>{{ item.label }}</span>
+        <span class="ml-auto w-1.5 h-1.5 bg-yellow-400/0 group-hover:bg-yellow-400/50 rounded-full transition-all duration-300"></span>
+      </a>
+    }
+  </nav>
+</aside>

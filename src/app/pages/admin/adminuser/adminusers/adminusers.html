@@ -1,0 +1,87 @@
+<div class="flex min-h-screen bg-gray-50">
+<app-sidebar></app-sidebar>
+  <div class="flex-1 p-8">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-8">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-800">Manage Users</h1>
+        <p class="text-gray-600">View and manage all registered users</p>
+      </div>
+      <div class="flex space-x-4">
+        <input [(ngModel)]="searchTerm" type="text" placeholder="Search users..."
+               class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent">
+        <button class="px-6 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 text-blue-900 font-semibold rounded-lg">
+          + Add User
+        </button>
+      </div>
+    </div>
+
+    <!-- User Table -->
+    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">User</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Role</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Join Date</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Bookings</th>
+              <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            @for (user of filteredUsers; track user.id) {
+              <tr class="hover:bg-gray-50 transition-colors">
+                <td class="px-6 py-4">
+                  <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-blue-900 font-bold">
+                      {{ user.name.charAt(0) }}
+                    </div>
+                    <span class="font-medium text-gray-900">{{ user.name }}</span>
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-sm text-gray-600">{{ user.email }}</td>
+                <td class="px-6 py-4">
+                  <span class="px-2 py-1 text-xs font-semibold rounded-full"
+                        [class.bg-purple-100]="getRoleColor(user.role) === 'purple'"
+                        [class.text-purple-800]="getRoleColor(user.role) === 'purple'"
+                        [class.bg-blue-100]="getRoleColor(user.role) === 'blue'"
+                        [class.text-blue-800]="getRoleColor(user.role) === 'blue'"
+                        [class.bg-gray-100]="getRoleColor(user.role) === 'gray'"
+                        [class.text-gray-800]="getRoleColor(user.role) === 'gray'">
+                    {{ user.role }}
+                  </span>
+                </td>
+                <td class="px-6 py-4">
+                  <span class="px-2 py-1 text-xs font-semibold rounded-full cursor-pointer"
+                        [class.bg-green-100]="getStatusColor(user.status) === 'green'"
+                        [class.text-green-800]="getStatusColor(user.status) === 'green'"
+                        [class.bg-red-100]="getStatusColor(user.status) === 'red'"
+                        [class.text-red-800]="getStatusColor(user.status) === 'red'"
+                        (click)="toggleStatus(user)">
+                    {{ user.status }}
+                  </span>
+                </td>
+                <td class="px-6 py-4 text-sm text-gray-600">{{ user.joinDate }}</td>
+                <td class="px-6 py-4 text-sm text-gray-600">{{ user.bookings }}</td>
+                <td class="px-6 py-4">
+                  <div class="flex space-x-2">
+                    <button class="px-3 py-1 text-blue-600 border border-blue-600 rounded hover:bg-blue-50 transition-colors text-sm">
+                      Edit
+                    </button>
+                    <button (click)="deleteUser(user.id)"
+                            class="px-3 py-1 text-red-600 border border-red-600 rounded hover:bg-red-50 transition-colors text-sm">
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

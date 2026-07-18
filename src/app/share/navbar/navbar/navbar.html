@@ -1,0 +1,159 @@
+<nav class="fixed top-0 w-full z-50 glass-panel border-b border-[#e3e1ea] shadow-sm">
+  <div class="container mx-auto px-4 md:px-6">
+    <div class="flex justify-between items-center h-20">
+
+      <!-- Logo / Brand -->
+      <a routerLink="/home" class="flex items-center gap-3">
+        <div class="w-11 h-11 bg-brand-orange-gradient rounded-full flex items-center justify-center shadow-brand-orange">
+          <span class="material-symbols-outlined text-white text-[24px]">travel_explore</span>
+        </div>
+        <div>
+          <h1 class="font-display text-xl font-bold leading-tight">
+            <span class="text-brand-gradient">Re7la</span><span class="text-[#132E8D]">Tours</span>
+          </h1>
+          <span class="font-body text-[10px] text-[#757683] tracking-[0.2em]">LUXURY BOOKINGS</span>
+        </div>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center gap-1">
+        <a routerLink="/home"
+           routerLinkActive="active-link"
+           [routerLinkActiveOptions]="{exact: true}"
+           class="nav-link">
+          Home
+        </a>
+        <a routerLink="/dashboard"
+           routerLinkActive="active-link"
+           class="nav-link">
+          Dashboard
+        </a>
+        <a routerLink="/booking"
+           routerLinkActive="active-link"
+           class="nav-link">
+          Bookings
+        </a>
+        <a routerLink="/package"
+           routerLinkActive="active-link"
+           class="nav-link">
+          Package
+        </a>
+        <a routerLink="/about"
+           routerLinkActive="active-link"
+           class="nav-link">
+          About Us
+        </a>
+        <a routerLink="/service"
+           routerLinkActive="active-link"
+           class="flex items-center gap-1.5 px-4 py-2 ms-1 rounded-xl text-white bg-brand-orange-gradient shadow-brand-orange transition-all duration-300 hover:shadow-lg hover:scale-105 font-body font-semibold text-sm">
+          <span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+          Services
+        </a>
+      </div>
+
+      <!-- Right Side - User Menu -->
+      <div class="flex items-center gap-4">
+        <!-- Language toggle -->
+        <button (click)="toggleLanguage()"
+                class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[#444652] hover:text-[#132E8D] hover:bg-[#f4f2fb] transition-all font-body text-sm font-semibold">
+          <span class="material-symbols-outlined text-[20px]">translate</span>
+          <span>{{ isArabic ? 'EN' : 'عربي' }}</span>
+        </button>
+
+        <button class="relative text-[#444652] hover:text-[#132E8D] transition-colors duration-300">
+          <span class="material-symbols-outlined text-[24px]">notifications</span>
+          <span class="absolute -top-1 -end-1 w-4 h-4 bg-[#F19F08] text-white text-[10px] rounded-full flex items-center justify-center font-bold">3</span>
+        </button>
+
+        <div class="relative user-menu">
+          <div (click)="toggleMenu()" class="flex items-center gap-3 cursor-pointer group">
+            <div class="w-10 h-10 rounded-full bg-brand-gradient border-2 border-[#F19F08]/60 flex items-center justify-center text-white font-bold font-display text-sm">
+              JD
+            </div>
+            <div class="hidden sm:block">
+              <p class="font-body text-sm font-semibold text-[#132E8D]">John Doe</p>
+              <p class="font-body text-xs text-[#757683]">Premium Member</p>
+            </div>
+            <span class="material-symbols-outlined text-[#757683] group-hover:text-[#F19F08] transition-colors duration-300 text-[18px]"
+                  [class.rotate-180]="menuOpen"
+                  style="transition: transform 0.2s ease;">
+              expand_more
+            </span>
+          </div>
+
+          <!-- Dropdown Menu -->
+          @if (menuOpen) {
+            <div class="absolute end-0 mt-3 w-64 glass-panel premium-shadow rounded-2xl overflow-hidden z-50 animate-slideDown">
+              <div class="p-4 border-b border-[#e3e1ea] bg-white/50">
+                <p class="font-display font-semibold text-[#132E8D]">John Doe</p>
+                <p class="font-body text-[#757683] text-sm">john&#64;example.com</p>
+              </div>
+              <div class="py-2">
+                <a routerLink="/profile" class="dropdown-link">
+                  <span class="material-symbols-outlined text-[#F19F08] text-[20px]">person</span>
+                  My Profile
+                </a>
+                <a routerLink="/settings" class="dropdown-link">
+                  <span class="material-symbols-outlined text-[#F19F08] text-[20px]">settings</span>
+                  Settings
+                </a>
+                <a routerLink="/my-bookings" class="dropdown-link">
+                  <span class="material-symbols-outlined text-[#F19F08] text-[20px]">list_alt</span>
+                  My Bookings
+                </a>
+                <hr class="border-[#e3e1ea] my-2 mx-4">
+                <button (click)="logout()" class="dropdown-link w-full text-left text-[#C0392B] hover:!bg-red-50">
+                  <span class="material-symbols-outlined text-[20px]">logout</span>
+                  Logout
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+
+        <button (click)="toggleMobileMenu()" class="md:hidden text-[#444652] hover:text-[#132E8D] transition-colors duration-300">
+          <span class="material-symbols-outlined text-[28px]">menu</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    @if (mobileMenuOpen) {
+      <div class="md:hidden pb-4 border-t border-[#e3e1ea] animate-slideDown">
+        <div class="flex flex-col gap-1 pt-4">
+          <a routerLink="/home"
+             routerLinkActive="active-link-mobile"
+             [routerLinkActiveOptions]="{exact: true}"
+             class="nav-link-mobile">Home</a>
+          <a routerLink="/dashboard"
+             routerLinkActive="active-link-mobile"
+             class="nav-link-mobile">Dashboard</a>
+          <a routerLink="/booking"
+             routerLinkActive="active-link-mobile"
+             class="nav-link-mobile">Bookings</a>
+          <a routerLink="/package"
+             routerLinkActive="active-link-mobile"
+             class="nav-link-mobile">Package</a>
+          <a routerLink="/about"
+             routerLinkActive="active-link-mobile"
+             class="nav-link-mobile">About Us</a>
+          <a routerLink="/service"
+             routerLinkActive="active-link-mobile"
+             class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl text-white bg-brand-orange-gradient shadow-brand-orange font-body font-semibold text-sm mt-1">
+            <span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+            Services
+          </a>
+
+          <button (click)="toggleLanguage()"
+                  class="flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-[#c5c5d4] text-[#444652] font-body font-semibold text-sm mt-1">
+            <span class="material-symbols-outlined text-[18px]">translate</span>
+            {{ isArabic ? 'Switch to English' : 'التبديل إلى العربية' }}
+          </button>
+        </div>
+      </div>
+    }
+  </div>
+</nav>
+
+<!-- Spacer so fixed nav doesn't overlap page content -->
+<div class="h-20"></div>

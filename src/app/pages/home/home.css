@@ -1,0 +1,181 @@
+/* ============================================
+   FONT IMPORTS — Material Symbols + type family
+   (Self-contained here so icons render correctly
+   even if index.html hasn't been updated.)
+   ============================================ */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+
+/* ============================================
+   FONTS
+   ============================================ */
+.font-display {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.font-body {
+  font-family: 'Work Sans', sans-serif;
+}
+
+/* ============================================
+   MATERIAL SYMBOLS
+   ============================================ */
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  display: inline-block;
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   GLASSMORPHISM — Level 1 / Level 2 surfaces
+   ============================================ */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.glass-panel-dark {
+  background: rgba(19, 46, 141, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.premium-shadow {
+  box-shadow: 0px 20px 40px rgba(19, 46, 141, 0.12);
+}
+
+/* ============================================
+   HERO GRADIENT — Maritime Blue fading to surface
+   ============================================ */
+.hero-gradient {
+  background: linear-gradient(
+    to bottom,
+    rgba(19, 46, 141, 0.75) 0%,
+    rgba(19, 46, 141, 0.35) 55%,
+    #fbf8ff 100%
+  );
+}
+
+/* ============================================
+   RADIAL DOT PATTERN — for CTA panels
+   ============================================ */
+.dot-pattern {
+  background-image: radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.14) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* ============================================
+   HIDE SCROLLBAR — for snap-scroll rails
+   ============================================ */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============================================
+   ANIMATIONS — used sparingly & purposefully
+   ============================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollHint {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(14px); }
+}
+
+.animate-fadeInUp {
+  opacity: 0;
+  animation: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scroll-hint {
+  animation: scrollHint 1.4s ease-in-out infinite;
+}
+
+.animation-delay-100 { animation-delay: 100ms; }
+.animation-delay-200 { animation-delay: 200ms; }
+.animation-delay-300 { animation-delay: 300ms; }
+.animation-delay-400 { animation-delay: 400ms; }
+
+/* ============================================
+   CARD HOVER — gentle lift, tinted shadow
+   ============================================ */
+.hover-lift {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(19, 46, 141, 0.14);
+}
+
+/* ============================================
+   BRAND COLOR UTILITIES (kept for reuse app-wide)
+   ============================================ */
+.bg-brand-primary   { background-color: #132E8D; }
+.bg-brand-secondary { background-color: #2356B7; }
+.bg-brand-accent    { background-color: #3A99DD; }
+.bg-brand-orange    { background-color: #F19F08; }
+.bg-brand-gold      { background-color: #EFC35D; }
+
+.text-brand-primary   { color: #132E8D; }
+.text-brand-secondary { color: #2356B7; }
+.text-brand-accent    { color: #3A99DD; }
+.text-brand-orange    { color: #F19F08; }
+.text-brand-gold      { color: #EFC35D; }
+
+.border-brand-orange { border-color: #F19F08; }
+.border-brand-gold   { border-color: #EFC35D; }
+
+.bg-brand-gradient        { background: linear-gradient(135deg, #132E8D, #2356B7, #3A99DD); }
+.bg-brand-orange-gradient { background: linear-gradient(135deg, #F19F08, #EFC35D); }
+
+.text-brand-gradient {
+  background: linear-gradient(135deg, #F19F08, #EFC35D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shadow-brand-orange { box-shadow: 0 10px 30px rgba(241, 159, 8, 0.3); }
+.shadow-brand-blue   { box-shadow: 0 10px 30px rgba(19, 46, 141, 0.25); }
+
+/* ============================================
+   RTL SUPPORT
+   ============================================ */
+[dir="rtl"] .flex-row-reverse-rtl {
+  flex-direction: row-reverse;
+}
+
+/* ============================================
+   RESPONSIVE TYPE SCALE
+   ============================================ */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 28px;
+    line-height: 36px;
+  }
+}

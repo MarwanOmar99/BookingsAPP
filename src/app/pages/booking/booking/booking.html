@@ -1,0 +1,110 @@
+<div class="min-h-screen bg-[#fbf8ff] py-10">
+  <div class="container mx-auto px-4 md:px-6">
+
+    <!-- Header -->
+    <div class="flex flex-wrap justify-between items-end gap-4 mb-8">
+      <div>
+        <span class="font-body text-xs font-bold uppercase tracking-widest text-[#2356B7]">Your Trips</span>
+        <h1 class="font-display text-3xl md:text-4xl font-bold text-[#132E8D] mt-1">My Bookings</h1>
+        <p class="font-body text-[#444652] mt-1">Manage all your tour bookings in one place</p>
+      </div>
+      <button class="flex items-center gap-2 px-6 py-3 bg-brand-orange-gradient text-white font-bold font-display rounded-xl shadow-brand-orange hover:shadow-lg hover:scale-[1.02] active:scale-[0.99] transition-all">
+        <span class="material-symbols-outlined text-[20px]">add</span>
+        New Booking
+      </button>
+    </div>
+
+    <!-- Filters -->
+    <div class="glass-panel rounded-2xl p-4 mb-8 flex flex-wrap gap-3">
+      @for (f of [
+        { value: 'all', label: 'All' },
+        { value: 'confirmed', label: 'Confirmed' },
+        { value: 'pending', label: 'Pending' },
+        { value: 'planning', label: 'Planning' }
+      ]; track f.value) {
+        <button (click)="filterStatus = f.value"
+                class="px-4 py-2 rounded-xl font-body text-sm font-semibold transition-all"
+                [ngClass]="filterStatus === f.value ? 'bg-[#132E8D] text-white' : 'bg-[#f4f2fb] text-[#444652]'">
+          {{ f.label }}
+        </button>
+      }
+    </div>
+
+    <!-- Booking Cards -->
+    @for (booking of filteredBookings; track booking.id) {
+      <div class="glass-panel premium-shadow rounded-2xl overflow-hidden hover-lift mb-5">
+        <div class="md:flex">
+          <div class="md:w-48 h-40 md:h-auto bg-brand-gradient flex items-center justify-center">
+            <span class="material-symbols-outlined text-white" style="font-size:56px">{{ booking.image }}</span>
+          </div>
+          <div class="p-6 flex-1">
+            <div class="flex flex-wrap justify-between items-start gap-3">
+              <div>
+                <h3 class="font-display text-xl font-semibold text-[#132E8D]">{{ booking.title }}</h3>
+                <p class="font-body text-sm text-[#757683] mt-0.5">{{ booking.duration }}</p>
+              </div>
+              <span class="px-3 py-1 rounded-full text-xs font-bold font-body"
+                    [ngClass]="{
+                      'bg-green-100 text-green-800': getStatusColor(booking.status) === 'green',
+                      'bg-[#FBEFD6] text-[#8A5A00]': getStatusColor(booking.status) === 'gold',
+                      'bg-[#DCEAFB] text-[#132E8D]': getStatusColor(booking.status) === 'blue',
+                      'bg-red-100 text-red-800': getStatusColor(booking.status) === 'red'
+                    }">
+                {{ booking.status }}
+              </span>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-4 mt-5 text-sm font-body">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[#2356B7] text-[18px]">flight_takeoff</span>
+                <div>
+                  <p class="text-[#757683] text-xs">Check-in</p>
+                  <p class="font-semibold text-[#1a1b21]">{{ booking.checkIn }}</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[#2356B7] text-[18px]">flight_land</span>
+                <div>
+                  <p class="text-[#757683] text-xs">Check-out</p>
+                  <p class="font-semibold text-[#1a1b21]">{{ booking.checkOut }}</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[#F19F08] text-[18px]">payments</span>
+                <div>
+                  <p class="text-[#757683] text-xs">Price</p>
+                  <p class="font-display font-bold text-[#F19F08]">${{ booking.price }}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-3 mt-5">
+              <button (click)="viewDetails(booking)"
+                      class="px-4 py-2 bg-[#132E8D] text-white rounded-xl hover:bg-[#0f2470] transition-colors text-sm font-semibold font-body">
+                View Details
+              </button>
+              <button (click)="cancelBooking(booking)"
+                      class="px-4 py-2 border border-[#c5c5d4] text-[#444652] rounded-xl hover:bg-[#f4f2fb] transition-colors text-sm font-semibold font-body">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+
+    <!-- Empty State -->
+    @if (filteredBookings.length === 0) {
+      <div class="text-center py-20 glass-panel premium-shadow rounded-2xl">
+        <span class="material-symbols-outlined text-[#c5c5d4] mb-4 inline-block" style="font-size:64px">inbox</span>
+        <h3 class="font-display text-2xl font-bold text-[#132E8D] mb-2">No Bookings Found</h3>
+        <p class="font-body text-[#444652]">Start planning your next adventure today!</p>
+        <a routerLink="/package"
+           class="inline-flex items-center gap-2 mt-5 px-6 py-3 bg-brand-orange-gradient text-white font-bold font-display rounded-xl shadow-brand-orange hover:shadow-lg transition-all">
+          Browse Packages
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </a>
+      </div>
+    }
+  </div>
+</div>

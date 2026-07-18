@@ -1,0 +1,8 @@
+/* Remove @import 'tailwindcss'; - NOT needed in v3 */
+/* Remove @apply - use regular CSS instead */
+
+.active {
+  background-color: rgba(30, 58, 138, 0.5);
+  color: white;
+  border-right: 4px solid #fbbf24;
+}

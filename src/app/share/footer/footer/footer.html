@@ -1,0 +1,119 @@
+<footer class="relative bg-[#0B1B5C] pt-16 overflow-hidden">
+  <!-- ambient accent, matches hero/CTA treatment -->
+  <div class="absolute inset-0 dot-pattern opacity-[0.07] pointer-events-none"></div>
+  <div class="absolute -top-24 -right-24 w-72 h-72 bg-[#3A99DD]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="container mx-auto px-4 md:px-6 relative z-10">
+
+    <!-- Top: brand + newsletter -->
+    <div class="grid lg:grid-cols-2 gap-10 items-center pb-12 border-b border-white/10">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 bg-brand-orange-gradient rounded-full flex items-center justify-center shadow-brand-orange shrink-0">
+          <span class="material-symbols-outlined text-white text-[26px]">travel_explore</span>
+        </div>
+        <div>
+          <h2 class="font-display text-2xl font-bold leading-tight">
+            <span class="text-brand-gradient">Re7la</span><span class="text-white">Tours</span>
+          </h2>
+          <p class="font-body text-sm text-white/50 max-w-sm mt-1">
+            Elevating global travel through exclusive experiences and uncompromising service.
+          </p>
+        </div>
+      </div>
+
+      <form (ngSubmit)="onSubscribe()" class="flex flex-col sm:flex-row gap-3 lg:justify-self-end w-full max-w-md">
+        <input [(ngModel)]="email" name="footer-email" type="email" placeholder="Enter your email"
+               class="flex-grow px-5 py-3.5 rounded-xl bg-white/10 border border-white/15 outline-none text-white placeholder-white/40 font-body focus:ring-2 focus:ring-[#F19F08] focus:border-transparent transition-all">
+        <button type="submit"
+                class="px-6 py-3.5 bg-brand-orange-gradient text-white font-bold font-display rounded-xl shadow-brand-orange hover:shadow-lg transition-all whitespace-nowrap">
+          Subscribe
+        </button>
+      </form>
+    </div>
+
+    <!-- Middle: link columns -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 py-12">
+
+      <!-- Quick Links -->
+      <div>
+        <h3 class="font-display text-sm font-bold uppercase tracking-widest text-[#EFC35D] mb-4">Explore</h3>
+        <ul class="space-y-2.5">
+          @for (link of quickLinks; track link.label) {
+            <li>
+              <a [routerLink]="link.routerLink"
+                 class="font-body text-sm text-white/60 hover:text-white transition-colors">
+                {{ link.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Destinations -->
+      <div>
+        <h3 class="font-display text-sm font-bold uppercase tracking-widest text-[#EFC35D] mb-4">Destinations</h3>
+        <ul class="space-y-2.5">
+          @for (link of destinationLinks; track link.label) {
+            <li>
+              <a [routerLink]="link.routerLink"
+                 class="font-body text-sm text-white/60 hover:text-white transition-colors">
+                {{ link.label }}
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div class="col-span-2 md:col-span-1">
+        <h3 class="font-display text-sm font-bold uppercase tracking-widest text-[#EFC35D] mb-4">Contact</h3>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-2.5">
+            <span class="material-symbols-outlined text-[#3A99DD] text-[18px] mt-0.5">location_on</span>
+            <span class="font-body text-sm text-white/60">{{ contactInfo.address }}</span>
+          </li>
+          <li class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-[#3A99DD] text-[18px]">call</span>
+            <a href="tel:{{ contactInfo.phone }}" class="font-body text-sm text-white/60 hover:text-white transition-colors">{{ contactInfo.phone }}</a>
+          </li>
+          <li class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-[#3A99DD] text-[18px]">mail</span>
+            <a href="mailto:{{ contactInfo.email }}" class="font-body text-sm text-white/60 hover:text-white transition-colors">{{ contactInfo.email }}</a>
+          </li>
+          <li class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-[#3A99DD] text-[18px]">schedule</span>
+            <span class="font-body text-sm text-white/60">{{ contactInfo.hours }}</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Socials -->
+      <div>
+        <h3 class="font-display text-sm font-bold uppercase tracking-widest text-[#EFC35D] mb-4">Follow Us</h3>
+        <div class="flex flex-wrap gap-2.5">
+          @for (social of socialLinks; track social.label) {
+            <a [href]="social.url" [attr.aria-label]="social.label"
+               class="w-10 h-10 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-brand-orange-gradient hover:border-transparent transition-all">
+              <span class="material-symbols-outlined text-[18px]">{{ social.icon }}</span>
+            </a>
+          }
+        </div>
+        <p class="font-body text-xs text-white/40 mt-5 leading-relaxed">
+          Join 20,000+ luxury travelers for early access to seasonal offers.
+        </p>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 py-6 border-t border-white/10">
+      <p class="font-body text-xs text-white/40 text-center md:text-left">
+        &copy; {{ currentYear }} Re7laTours. All rights reserved.
+      </p>
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+        <a href="#" class="font-body text-xs text-white/40 hover:text-white transition-colors">Privacy Policy</a>
+        <a href="#" class="font-body text-xs text-white/40 hover:text-white transition-colors">Terms of Service</a>
+        <a href="#" class="font-body text-xs text-white/40 hover:text-white transition-colors">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
+</footer>
