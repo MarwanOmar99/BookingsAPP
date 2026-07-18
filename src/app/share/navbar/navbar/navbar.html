@@ -51,28 +51,29 @@
         </a>
       </div>
 
-      <!-- Right Side - User Menu -->
-      <div class="flex items-center gap-4">
-        <!-- Language toggle -->
+      <!-- Right Side - User Menu & Controls -->
+      <div class="flex items-center gap-2 sm:gap-4">
+        <!-- Language toggle (Hidden on mobile/tablet, shown on desktop because it's handled inside the mobile menu drawer) -->
         <button (click)="toggleLanguage()"
-                class="flex items-center gap-1.5 px-3 py-2 rounded-xl text-[#444652] hover:text-[#132E8D] hover:bg-[#f4f2fb] transition-all font-body text-sm font-semibold">
+                class="hidden md:flex items-center gap-1.5 px-3 py-2 rounded-xl text-[#444652] hover:text-[#132E8D] hover:bg-[#f4f2fb] transition-all font-body text-sm font-semibold">
           <span class="material-symbols-outlined text-[20px]">translate</span>
           <span>{{ isArabic ? 'EN' : 'عربي' }}</span>
         </button>
 
-        <button class="relative text-[#444652] hover:text-[#132E8D] transition-colors duration-300">
+        <button class="relative text-[#444652] hover:text-[#132E8D] transition-colors duration-300 p-1">
           <span class="material-symbols-outlined text-[24px]">notifications</span>
-          <span class="absolute -top-1 -end-1 w-4 h-4 bg-[#F19F08] text-white text-[10px] rounded-full flex items-center justify-center font-bold">3</span>
+          <span class="absolute top-0 end-0 w-4 h-4 bg-[#F19F08] text-white text-[10px] rounded-full flex items-center justify-center font-bold">3</span>
         </button>
 
+        <!-- User Menu Profile -->
         <div class="relative user-menu">
-          <div (click)="toggleMenu()" class="flex items-center gap-3 cursor-pointer group">
-            <div class="w-10 h-10 rounded-full bg-brand-gradient border-2 border-[#F19F08]/60 flex items-center justify-center text-white font-bold font-display text-sm">
+          <div (click)="toggleMenu()" class="flex items-center gap-2 sm:gap-3 cursor-pointer group">
+            <div class="w-10 h-10 rounded-full bg-brand-gradient border-2 border-[#F19F08]/60 flex items-center justify-center text-white font-bold font-display text-sm shrink-0">
               JD
             </div>
             <div class="hidden sm:block">
-              <p class="font-body text-sm font-semibold text-[#132E8D]">John Doe</p>
-              <p class="font-body text-xs text-[#757683]">Premium Member</p>
+              <p class="font-body text-sm font-semibold text-[#132E8D] leading-tight">John Doe</p>
+              <p class="font-body text-[11px] text-[#757683]">Premium Member</p>
             </div>
             <span class="material-symbols-outlined text-[#757683] group-hover:text-[#F19F08] transition-colors duration-300 text-[18px]"
                   [class.rotate-180]="menuOpen"
@@ -111,8 +112,11 @@
           }
         </div>
 
-        <button (click)="toggleMobileMenu()" class="md:hidden text-[#444652] hover:text-[#132E8D] transition-colors duration-300">
-          <span class="material-symbols-outlined text-[28px]">menu</span>
+        <!-- Mobile Menu Toggle Button -->
+        <button (click)="toggleMobileMenu()" class="md:hidden text-[#444652] hover:text-[#132E8D] transition-colors duration-300 p-1">
+          <span class="material-symbols-outlined text-[28px]">
+            {{ mobileMenuOpen ? 'close' : 'menu' }}
+          </span>
         </button>
       </div>
     </div>
