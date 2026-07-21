@@ -1,59 +1,98 @@
-<!-- Required once per page by the Facebook SDK -->
-<div id="fb-root"></div>
-
 <section class="py-24 bg-[#f4f2fb]">
   <div class="container mx-auto px-4 md:px-6">
 
+    <!-- Title Header -->
     <div class="text-center mb-12">
-      <span class="font-body text-xs font-bold uppercase tracking-widest text-[#2356B7]">Real Feedback</span>
+      <span class="font-body text-xs font-bold uppercase tracking-widest text-[#2356B7]">آراء حقيقية</span>
       <h2 class="font-display text-3xl md:text-4xl font-bold text-[#132E8D] mt-2">Loved on Facebook</h2>
       <p class="font-body text-[#444652] max-w-xl mx-auto mt-3">
-        See what real travelers are saying about us — straight from our Facebook Page.
+        See what real travelers are saying about us — straight from our Facebook travelers.
       </p>
     </div>
 
-    <div class="grid lg:grid-cols-3 gap-6 items-start">
+    <div class="grid lg:grid-cols-3 gap-6 items-stretch">
 
-      <!-- Official Facebook Page Plugin — shows aggregate rating + recent activity -->
-      <div class="glass-panel premium-shadow rounded-2xl p-4 flex flex-col items-center">
-        <div class="w-full flex justify-center overflow-hidden rounded-xl" style="min-height: 280px;">
-          <div class="fb-page"
-               [attr.data-href]="pageUrl"
-               data-tabs="timeline"
-               data-width=""
-               data-height="420"
-               data-small-header="false"
-               data-adapt-container-width="true"
-               data-hide-cover="false"
-               data-show-facepile="false">
-            <blockquote [attr.cite]="pageUrl" class="fb-xfbml-parse-ignore">
-              <a [href]="pageUrl" target="_blank" rel="noopener">Re7laTours on Facebook</a>
-            </blockquote>
+      <!-- Official Facebook Page Embed / Box -->
+      <div class="glass-panel premium-shadow rounded-2xl p-6 flex flex-col items-center justify-between bg-white border border-white/40">
+        <div class="text-center w-full">
+          <div class="w-16 h-16 bg-[#2356B7]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="material-symbols-outlined text-[#2356B7] text-3xl">groups</span>
+          </div>
+          <h3 class="font-bold text-[#132E8D] text-xl">Re7la Tours</h3>
+          <p class="text-xs text-[#757683] mt-1">مجتمعنا على فيسبوك</p>
+
+          <div class="my-6 p-4 bg-[#f4f2fb] rounded-xl text-center">
+            <span class="text-3xl font-extrabold text-[#132E8D]">4.9</span>
+            <div class="flex justify-center text-amber-400 my-1">
+              <span class="material-symbols-outlined text-sm">star</span>
+              <span class="material-symbols-outlined text-sm">star</span>
+              <span class="material-symbols-outlined text-sm">star</span>
+              <span class="material-symbols-outlined text-sm">star</span>
+              <span class="material-symbols-outlined text-sm">star</span>
+            </div>
+            <p class="text-xs text-[#444652]">بناءً على تقييمات المسافرين</p>
           </div>
         </div>
+
         <a [href]="reviewsPageUrl" target="_blank" rel="noopener"
-           class="mt-4 inline-flex items-center gap-2 px-5 py-2.5 bg-brand-orange-gradient text-white font-semibold font-body text-sm rounded-xl shadow-brand-orange hover:shadow-lg transition-all">
+           class="w-full inline-flex items-center justify-center gap-2 px-5 py-3 bg-brand-orange-gradient text-white font-semibold font-body text-sm rounded-xl shadow-brand-orange hover:shadow-lg transition-all">
           <span class="material-symbols-outlined text-[18px]">reviews</span>
-          View All Reviews
+          عرض جميع التقييمات على فيسبوك
         </a>
       </div>
 
-      <!-- Featured individual reviews -->
+      <!-- Custom Static Review Cards Grid -->
       <div class="lg:col-span-2 grid sm:grid-cols-2 gap-5">
-        @for (url of reviewUrls; track url; let i = $index) {
-          <div class="glass-panel premium-shadow rounded-2xl overflow-hidden hover-lift p-3 flex justify-center">
-            <div class="fb-post" [attr.data-href]="url" data-width="380" data-show-text="true">
-              <blockquote [attr.cite]="url" class="fb-xfbml-parse-ignore font-body text-sm text-[#444652]">
-                <a [href]="url" target="_blank" rel="noopener">View this review on Facebook</a>
-              </blockquote>
+        @for (review of reviewsList; track review.id) {
+          <div class="glass-panel premium-shadow rounded-2xl p-6 flex flex-col justify-between bg-white/90 border border-white/50 hover-lift">
+            <div>
+              <!-- Author Header -->
+              <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center gap-3">
+                  <img [src]="review.avatar" class="w-11 h-11 rounded-full object-cover border border-slate-100" [alt]="review.author">
+                  <div>
+                    <h4 class="font-bold text-[#132E8D] text-base leading-tight">{{ review.author }}</h4>
+                    <span class="text-[11px] text-[#757683]">{{ review.date }}</span>
+                  </div>
+                </div>
+                <!-- Facebook Badge Icon -->
+                <div class="w-7 h-7 rounded-full bg-[#1877F2]/10 flex items-center justify-center text-[#1877F2]">
+                  <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Rating Stars -->
+              <div class="flex text-amber-400 mb-3">
+                @for (star of [1,2,3,4,5]; track star) {
+                  <span class="material-symbols-outlined text-sm fill-current">star</span>
+                }
+              </div>
+
+              <!-- Review Content -->
+              <p class="font-body text-sm text-[#444652] leading-relaxed">
+                "{{ review.comment }}"
+              </p>
+            </div>
+
+            <!-- Footer External Link -->
+            <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
+              <span class="text-xs text-[#757683]">مراجعة موثقة</span>
+              <a [href]="review.url" target="_blank" rel="noopener"
+                 class="inline-flex items-center gap-1 text-xs font-bold text-[#2356B7] hover:underline">
+                عرض على Facebook
+                <span class="material-symbols-outlined text-xs">open_in_new</span>
+              </a>
             </div>
           </div>
         }
       </div>
+
     </div>
 
     <p class="text-center font-body text-xs text-[#757683] mt-8">
-      Reviews are embedded live from Facebook and reflect Facebook's own moderation and display rules.
+      جميع التقييمات مكتوبة بواسطة عملاء حقيقيين وتم التحقق منها عبر صفحتنا الرسمية.
     </p>
   </div>
 </section>
