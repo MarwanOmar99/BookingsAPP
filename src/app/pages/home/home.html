@@ -72,6 +72,7 @@
           <div class="space-y-1.5">
             <label class="font-body text-xs font-semibold uppercase tracking-wide text-[#444652]">Travel Type</label>
             <div class="grid grid-cols-3 gap-2">
+
               @for (type of travelTypes; track type.value) {
                 <button type="button"
                         (click)="searchData.travelType = type.value"
@@ -265,7 +266,7 @@
       <span class="font-body text-xs font-bold uppercase tracking-widest text-[#2356B7]">Testimonials</span>
       <h2 class="font-display text-3xl md:text-4xl font-bold text-[#132E8D] mt-2">What Our Travelers Say</h2>
     </div>
-
+    <app-facebook-reviews></app-facebook-reviews>
     <div class="grid md:grid-cols-3 gap-6">
       @for (testimonial of testimonials; track testimonial.name) {
         <div class="glass-panel rounded-3xl p-7 hover-lift">

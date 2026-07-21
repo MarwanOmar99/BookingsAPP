@@ -20,6 +20,9 @@ import { Adminusers } from './pages/admin/adminuser/adminusers/adminusers';
 import { Adminbookings } from './pages/admin/adminbooking/adminbookings/adminbookings';
 import { Adminhotel } from './pages/admin/adminhotel/adminhotel/adminhotel';
 import { HomeComponent } from './pages/home/home';
+import { Register } from './pages/share/register/register';
+import { Login } from './pages/share/login/login';
+import { FacebookReviews } from './pages/facebookreviws/facebookreviws';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,9 @@ import { HomeComponent } from './pages/home/home';
     Adminbookings,
     Adminhotel,
     HomeComponent,
+    Register,
+    Login,
+    FacebookReviews,
   ],
   imports: [
     BrowserModule,

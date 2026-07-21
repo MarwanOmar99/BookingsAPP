@@ -1,0 +1,59 @@
+<!-- Required once per page by the Facebook SDK -->
+<div id="fb-root"></div>
+
+<section class="py-24 bg-[#f4f2fb]">
+  <div class="container mx-auto px-4 md:px-6">
+
+    <div class="text-center mb-12">
+      <span class="font-body text-xs font-bold uppercase tracking-widest text-[#2356B7]">Real Feedback</span>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-[#132E8D] mt-2">Loved on Facebook</h2>
+      <p class="font-body text-[#444652] max-w-xl mx-auto mt-3">
+        See what real travelers are saying about us — straight from our Facebook Page.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-6 items-start">
+
+      <!-- Official Facebook Page Plugin — shows aggregate rating + recent activity -->
+      <div class="glass-panel premium-shadow rounded-2xl p-4 flex flex-col items-center">
+        <div class="w-full flex justify-center overflow-hidden rounded-xl" style="min-height: 280px;">
+          <div class="fb-page"
+               [attr.data-href]="pageUrl"
+               data-tabs="timeline"
+               data-width=""
+               data-height="420"
+               data-small-header="false"
+               data-adapt-container-width="true"
+               data-hide-cover="false"
+               data-show-facepile="false">
+            <blockquote [attr.cite]="pageUrl" class="fb-xfbml-parse-ignore">
+              <a [href]="pageUrl" target="_blank" rel="noopener">Re7laTours on Facebook</a>
+            </blockquote>
+          </div>
+        </div>
+        <a [href]="reviewsPageUrl" target="_blank" rel="noopener"
+           class="mt-4 inline-flex items-center gap-2 px-5 py-2.5 bg-brand-orange-gradient text-white font-semibold font-body text-sm rounded-xl shadow-brand-orange hover:shadow-lg transition-all">
+          <span class="material-symbols-outlined text-[18px]">reviews</span>
+          View All Reviews
+        </a>
+      </div>
+
+      <!-- Featured individual reviews -->
+      <div class="lg:col-span-2 grid sm:grid-cols-2 gap-5">
+        @for (url of reviewUrls; track url; let i = $index) {
+          <div class="glass-panel premium-shadow rounded-2xl overflow-hidden hover-lift p-3 flex justify-center">
+            <div class="fb-post" [attr.data-href]="url" data-width="380" data-show-text="true">
+              <blockquote [attr.cite]="url" class="fb-xfbml-parse-ignore font-body text-sm text-[#444652]">
+                <a [href]="url" target="_blank" rel="noopener">View this review on Facebook</a>
+              </blockquote>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <p class="text-center font-body text-xs text-[#757683] mt-8">
+      Reviews are embedded live from Facebook and reflect Facebook's own moderation and display rules.
+    </p>
+  </div>
+</section>

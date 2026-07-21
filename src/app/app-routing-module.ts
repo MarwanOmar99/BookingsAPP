@@ -11,6 +11,9 @@ import { Adminusers } from './pages/admin/adminuser/adminusers/adminusers';
 import { Adminbookings } from './pages/admin/adminbooking/adminbookings/adminbookings';
 import { Adminhotel } from './pages/admin/adminhotel/adminhotel/adminhotel';
 import {  HomeComponent } from './pages/home/home';
+import { Login } from './pages/share/login/login';
+import { Register } from './pages/share/register/register';
+import { FacebookReviews } from './pages/facebookreviws/facebookreviws';
 
 const routes: Routes = [
   {path: '', component:HomeComponent},
@@ -27,6 +30,10 @@ const routes: Routes = [
   {path: 'admin/users',component:Adminusers},
   {path: 'admin/bookings', component:Adminbookings},
   {path: 'admin/hotels', component:Adminhotel},
+  // Register and login routes
+  {path: 'login' , component: Login},
+  {path: 'register', component: Register},
+  {path: 'reviews', component: FacebookReviews},
 ];
 
 @NgModule({
