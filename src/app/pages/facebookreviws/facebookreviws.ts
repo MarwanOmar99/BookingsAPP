@@ -39,6 +39,7 @@ export class FacebookReviews implements AfterViewInit, OnDestroy {
    * Open each share link once, copy the URL it redirects to, and use that instead.
    */
   @Input() reviewUrls: string[] = [
+    'https://www.facebook.com/story.php?story_fbid=24211401961843630&id=100002014915725&rdid=XEnYFKkqaTee2geV#',
     'https://www.facebook.com/story.php?story_fbid=24211401961843630&id=100002014915725&rdid=XEnYFKkqaTee2geV#'
   ];
 
